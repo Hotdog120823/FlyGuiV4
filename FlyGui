@@ -404,35 +404,36 @@ player.Chatted:Connect(function(message)
     end
 end)
 
-print("Fly GUI V4 created by hotdog loaded successfully – command list: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version ")
+print("Fly GUI V4 created by hotdog loaded successfully – command list: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version")
 print("default fly keybind: F")
 warn("the keybind feature may not work for you, if ur on mobile the keybind feature wont work.")
 warn("the script may have issues with the command feature use the gui if you encounter any issues with the command feature")
+warn("you may experience issues with the script please report any bugs with the script")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ";commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version ")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version ")
     end
 end)
 
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ":commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version")
     end
 end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == "/commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version")
     end
 end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ".commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version")
     end
 end)
 
@@ -523,11 +524,6 @@ LocalPlayer.Chatted:Connect(function(message)
     end
 end)
 
-LocalPlayer.Chatted:Connect(function(message)
-    if message == "/version" then  
-        print("current version of the script: V4.3")
-    end
-end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ":version" then  
