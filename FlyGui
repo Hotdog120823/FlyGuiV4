@@ -2,16 +2,24 @@ local TweenService     = game:GetService("TweenService")
 local RunService       = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
-local player = game.Players.LocalPlayer
-local char   = player.Character or player.CharacterAdded:Wait()
-local camera = workspace.CurrentCamera
+local player   = game.Players.LocalPlayer
+local char     = player.Character or player.CharacterAdded:Wait()
+local camera   = workspace.CurrentCamera
+
+local function hexToColor(hex)
+    hex = hex:gsub("#", "")
+    if #hex ~= 6 then return nil end
+    local r = tonumber(hex:sub(1,2), 16) or 0
+    local g = tonumber(hex:sub(3,4), 16) or 0
+    local b = tonumber(hex:sub(5,6), 16) or 0
+    return Color3.new(r/255, g/255, b/255)
+end
 
 local flying = false
 local currentSpeed = 20  
 
 local bv, bg           
 local flyConnection    
-
 
 local flyKey = Enum.KeyCode.F
 
@@ -38,12 +46,10 @@ inputEndedConn = UserInputService.InputEnded:Connect(function(input, gameProcess
     end
 end)
 
-
 local function enableFlight()
     local hrp = char:FindFirstChild("HumanoidRootPart")
     if not hrp then return end
 
-    
     bg = Instance.new("BodyGyro")
     bg.P = 3000
     bg.MaxTorque = Vector3.new(400000, 400000, 400000)
@@ -51,13 +57,13 @@ local function enableFlight()
     bg.CFrame = CFrame.new(hrp.Position) * CFrame.Angles(0, camYaw, 0)
     bg.Parent = hrp
 
-    
+
     bv = Instance.new("BodyVelocity")
     bv.Velocity = Vector3.new(0, 0, 0)
     bv.MaxForce = Vector3.new(400000, 400000, 400000)
     bv.Parent = hrp
 
-    
+
     flyConnection = RunService.RenderStepped:Connect(function(dt)
         if hrp and bg and bv then
             local direction = Vector3.new(0, 0, 0)
@@ -111,6 +117,7 @@ local function toggleFly(flyButton)
     updateFlyButtonText(flyButton)
 end
 
+
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
     if gameProcessed then return end
     if not UserInputService:GetFocusedTextBox() then
@@ -129,16 +136,15 @@ local function decreaseSpeed()
     currentSpeed = math.max(5, currentSpeed - 5)
 end
 
-
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "FlyGUI_V4"
 screenGui.Parent = player:WaitForChild("PlayerGui")
 
 local frame = Instance.new("Frame")
 frame.Name = "FlyFrame"
-frame.Size = UDim2.new(0, 200, 0, 320)
-frame.Position = UDim2.new(0.5, -100, 0.7, -160)
-frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame.Size = UDim2.new(0, 200, 0, 360)
+frame.Position = UDim2.new(0.5, -100, 0.7, -180)
+frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)  
 frame.BackgroundTransparency = 0.1
 frame.BorderSizePixel = 0
 frame.Parent = screenGui
@@ -229,16 +235,17 @@ minimizeButton.MouseButton1Click:Connect(function()
                 v.Visible = true
             end
         end
-        frame.Size = UDim2.new(0, 200, 0, 320)
+        frame.Size = UDim2.new(0, 200, 0, 360)
         minimizeButton.Text = "–"
     end
 end)
+
 
 local flyKeyLabel = Instance.new("TextLabel")
 flyKeyLabel.Name = "FlyKeyLabel"
 flyKeyLabel.Parent = frame
 flyKeyLabel.Size = UDim2.new(0, 90, 0, 25)
-flyKeyLabel.Position = UDim2.new(0, 10, 0, 205)
+flyKeyLabel.Position = UDim2.new(0, 10, 0, 220)
 flyKeyLabel.BackgroundTransparency = 1
 flyKeyLabel.Text = "Fly KeyBind:"
 flyKeyLabel.Font = Enum.Font.SourceSansBold
@@ -250,7 +257,7 @@ local flyKeyBox = Instance.new("TextBox")
 flyKeyBox.Name = "FlyKeyBox"
 flyKeyBox.Parent = frame
 flyKeyBox.Size = UDim2.new(0, 80, 0, 25)
-flyKeyBox.Position = UDim2.new(0, 110, 0, 205)
+flyKeyBox.Position = UDim2.new(0, 110, 0, 220)
 flyKeyBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 flyKeyBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 flyKeyBox.Font = Enum.Font.SourceSansBold
@@ -268,6 +275,44 @@ flyKeyBox.FocusLost:Connect(function(enterPressed)
         flyKeyBox.Text = "F"
     end
 end)
+
+
+local guiColorLabel = Instance.new("TextLabel")
+guiColorLabel.Name = "GUIColorLabel"
+guiColorLabel.Parent = frame
+guiColorLabel.Size = UDim2.new(0, 90, 0, 25)
+guiColorLabel.Position = UDim2.new(0, 10, 0, 250)
+guiColorLabel.BackgroundTransparency = 1
+guiColorLabel.Text = "GUI Color:"
+guiColorLabel.Font = Enum.Font.SourceSansBold
+guiColorLabel.TextSize = 18
+guiColorLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+guiColorLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+
+local function createColorButton(name, color, pos)
+    local btn = Instance.new("TextButton")
+    btn.Name = name
+    btn.Parent = frame
+    btn.Size = UDim2.new(0, 40, 0, 25)
+    btn.Position = pos
+    btn.BackgroundColor3 = color
+    btn.Text = ""
+    btn.BorderSizePixel = 0
+    btn.MouseButton1Click:Connect(function()
+        frame.BackgroundColor3 = color
+        bgGradient.Color = ColorSequence.new(color, color)
+    end)
+    return btn
+end
+
+
+createColorButton("RedButton", Color3.new(1, 0, 0), UDim2.new(0, 110, 0, 250))
+createColorButton("PurpleButton", Color3.fromRGB(128, 0, 128), UDim2.new(0, 155, 0, 250))
+createColorButton("BlueButton", Color3.new(0, 0, 1), UDim2.new(0, 10, 0, 280))
+createColorButton("WhiteButton", Color3.new(1, 1, 1), UDim2.new(0, 55, 0, 280))
+createColorButton("OriginalButton", Color3.fromRGB(40, 40, 40), UDim2.new(0, 10, 0, 310))
+createColorButton("OrangeButton", Color3.fromRGB(255, 165, 0), UDim2.new(0, 55, 0, 310))
 
 local function createControlButton(name, text, size, pos)
     local btn = Instance.new("TextButton")
@@ -321,12 +366,10 @@ flyButton.MouseButton1Click:Connect(function()
     toggleFly(flyButton)
 end)
 
-
 upButton.MouseButton1Click:Connect(increaseSpeed)
 plusButton.MouseButton1Click:Connect(increaseSpeed)
 downButton.MouseButton1Click:Connect(decreaseSpeed)
 minusButton.MouseButton1Click:Connect(decreaseSpeed)
-
 
 player.Chatted:Connect(function(message)
     local m = message:lower()
@@ -385,4 +428,6 @@ checkPlatform()
 
 
 
-print("script version: V4.0")
+print("script version: V4.1")
+
+
