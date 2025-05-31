@@ -40,7 +40,7 @@ inputEndedConn = UserInputService.InputEnded:Connect(function(input, gameProcess
     if gameProcessed then return end
     if input.UserInputType == Enum.UserInputType.Keyboard then
         if input.KeyCode == Enum.KeyCode.W then moving.W = false end
-        if input.KeyCode == Enum.KeyCode.A then moving.A = false end
+        if input.KeyCode == Enum.KeyCode.A then moving.A = false end    
         if input.KeyCode == Enum.KeyCode.S then moving.S = false end
         if input.KeyCode == Enum.KeyCode.D then moving.D = false end
     end
@@ -373,9 +373,9 @@ minusButton.MouseButton1Click:Connect(decreaseSpeed)
 
 player.Chatted:Connect(function(message)
     local m = message:lower()
-    if m == ";fly" or m == "/fly" or m == ":fly" then
+    if m == ";fly" or m == "/fly" or m == ":fly" or m == ".fly" then
         toggleFly(flyButton)
-    elseif m == ";unfly" or m == "/unfly" or m == ":unfly" then
+    elseif m == ";unfly" or m == "/unfly" or m == ":unfly" or m == ".unfly" then
         if flying then
             disableFlight()
             flying = false
@@ -384,7 +384,7 @@ player.Chatted:Connect(function(message)
     end
 end)
 
-print("Fly GUI V4 created by hotdog loaded successfully – command list: ;fly ;unfly /fly /unfly :fly :unfly /commands ;commands :commands")
+print("Fly GUI V4 created by hotdog loaded successfully – command list: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version ")
 print("default fly keybind: F")
 warn("the keybind feature may not work for you, if ur on mobile the keybind feature wont work.")
 warn("the script may have issues with the command feature use the gui if you encounter any issues with the command feature")
@@ -393,20 +393,131 @@ local LocalPlayer = Players.LocalPlayer
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ";commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly ;commands :commands /commands")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version ")
     end
 end)
 
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ":commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly ;commands :commands /commands")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
     end
 end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == "/commands" then  
-        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly ;commands :commands /commands")
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ".commands" then  
+        print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version /version")
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ".spamconsole" then  
+        _G.auto = true
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ".unspamconsole" then  
+        _G.auto = false
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ":unspamconsole" then  
+        _G.auto = false
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ";unspamconsole" then  
+        _G.auto = false
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == "/spamconsole" then  
+        _G.auto = true
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ";spamconsole" then  
+        _G.auto = true
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ":spamconsole" then  
+        _G.auto = true
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == "/unspamconsole" then  
+        _G.auto = false
+        while _G.auto do
+            print("hi")
+            wait(0.1)
+        end
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ".version" then  
+        print("current version of the script: V4.2")
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == "/version" then  
+        print("current version of the script: V4.2")
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ":version" then  
+        print("current version of the script: V4.2")
+    end
+end)
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == ";version" then  
+        print("current version of the script: V4.2")
     end
 end)
 
@@ -428,6 +539,5 @@ checkPlatform()
 
 
 
-print("script version: V4.1")
-
+print("script version: V4.2")
 
