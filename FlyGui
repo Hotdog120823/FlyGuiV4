@@ -468,7 +468,7 @@ LocalPlayer.Chatted:Connect(function(message)
 end)
 
 LocalPlayer.Chatted:Connect(function(message)
-    if message == ";unspamconsole" then  
+    if message == ";unspamonsole" then  
         _G.auto = false
         while _G.auto do
             print("hi")
@@ -519,20 +519,27 @@ end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ".version" then  
-        print("current version of the script: V4.3")
+        print("current version of the script: V4.4")
     end
 end)
 
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ":version" then  
-        print("current version of the script: V4.3")
+        print("current version of the script: V4.4")
     end
 end)
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ";version" then  
-        print("current version of the script: V4.3")
+        print("current version of the script: V4.4")
+    end
+end)
+
+
+LocalPlayer.Chatted:Connect(function(message)
+    if message == "hi" then  
+        print("hi")
     end
 end)
 
@@ -554,4 +561,5 @@ checkPlatform()
 
 
 
-print("script version: V4.3")
+print("script version: V4.4")
+print("new version of the script was released just search up Fly Gui V5 on scriptblox and you'll get the script")
