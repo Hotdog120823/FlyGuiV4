@@ -238,7 +238,7 @@ flyKeyLabel.Parent = frame
 flyKeyLabel.Size = UDim2.new(0, 90, 0, 25)
 flyKeyLabel.Position = UDim2.new(0, 10, 0, 260)
 flyKeyLabel.BackgroundTransparency = 1
-flyKeyLabel.Text = "Fly Key:"
+flyKeyLabel.Text = "Fly KeyBind:"
 flyKeyLabel.Font = Enum.Font.SourceSansBold
 flyKeyLabel.TextSize = 18
 flyKeyLabel.TextColor3 = Color3.fromRGB(255,255,255)
@@ -417,7 +417,6 @@ LocalPlayer.Chatted:Connect(function(message)
         print("list of commands: ;fly ;unfly :fly :unfly /fly /unfly .fly .unfly ;commands :commands /commands .spamconsole /spamconsole :spamconsole ;spamconsole .unspamconsole /unspamconsole ;unspamconsole :unspamconsole .commands ;version .version :version ")
     end
 end)
-
 
 LocalPlayer.Chatted:Connect(function(message)
     if message == ":commands" then  
